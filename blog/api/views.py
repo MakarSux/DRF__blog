@@ -1,6 +1,10 @@
-from rest_framework import generics, permissions
-from . import serializers
 from django.contrib.auth.models import User
+
+from rest_framework import generics, permissions, views
+
+
+
+from . import serializers
 from .models import Post, Comment, Category
 from .serializers import PostSerializer
 from .permissions import IsOwnerOrReadOnly
@@ -65,3 +69,4 @@ class CategoryDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = serializers.CategorySerializer  # Сериализатор для категорий
     permission_classes = [permissions.IsAuthenticatedOrReadOnly,  # Разрешения: только аутентифицированные пользователи могут обновлять и удалять категории
                           IsOwnerOrReadOnly]  # Разрешения: только владелец может обновлять и удалять категорию
+    

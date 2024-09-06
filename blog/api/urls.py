@@ -1,14 +1,16 @@
-from django.urls import path
+from django.urls import path, include
+
 from rest_framework.urlpatterns import format_suffix_patterns
+
 from . import views
 
 # Определение URL-шаблонов для API
 urlpatterns = [
     # URL для отображения списка всех пользователей
-    path('users/', views.UserList.as_view()),
+    path('users-list/', views.UserList.as_view()),
     
     # URL для отображения деталей конкретного пользователя по его ID
-    path('users/<int:pk>/', views.UserDetail.as_view()),
+    path('users-detail/<int:pk>/', views.UserDetail.as_view()),
     
     # URL для отображения списка всех постов и создания новых постов
     path('posts/', views.PostList.as_view()),
