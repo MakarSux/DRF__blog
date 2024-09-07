@@ -1,4 +1,4 @@
-from django.urls import path, include
+from django.urls import path, re_path, include
 
 from rest_framework.urlpatterns import format_suffix_patterns
 
@@ -6,6 +6,7 @@ from . import views
 
 # Определение URL-шаблонов для API
 urlpatterns = [
+    
     # URL для отображения списка всех пользователей
     path('users-list/', views.UserList.as_view()),
     
@@ -29,6 +30,12 @@ urlpatterns = [
     
     # URL для отображения, обновления и удаления конкретной категории по её ID
     path('categories/<int:pk>/', views.CategoryDetail.as_view()),
+]
+
+
+accounts_urlpatterns = [
+    re_path(r'^api/v1/', include('djoser.urls')),
+    re_path(r'^api/v1/', include('djoser.urls.authtoken')),
 ]
 
 # Применение format_suffix_patterns для поддержки различных форматов ответов (например, JSON, XML)
